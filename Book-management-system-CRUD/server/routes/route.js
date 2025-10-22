@@ -12,7 +12,7 @@ router.post('/add',async (req,res) => {
     }
 
     const newbook = new Book({ name,author,price})
-    await Book.save(newbook)
+    newbook.save()
     res.json({ message : 'Book added successfully'})
 })
 
@@ -22,14 +22,21 @@ router.get('/',async (req,res) => {
     res.json(books)
 })
 
+// Get a single book by ID (for EditBook)
+router.get('/update/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book) return res.status(404).json({ message: 'Book not found' });
+        res.json(book);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 //update
 router.put('/update/:id',async (req,res) => {
     const {name,author,price} = req.body;
-    const existingBook = await Book.findOne({ name })
-    if(!existingBook) {
-        return res.json({message : 'Book not found'})
-    }
-
     await Book.findByIdAndUpdate(req.params.id, {name,author,price})
     res.json({ message : 'Book updated successfully'})
 })

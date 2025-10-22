@@ -8,7 +8,7 @@ const ViewBooks = () => {
 
     const fetchBooks = async () => {
         const res = await fetch("http://localhost:5000/book")
-        const data = res.json()
+        const data = await res.json()
         setBooks(data)
     }
 

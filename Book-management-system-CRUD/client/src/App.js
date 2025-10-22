@@ -1,4 +1,4 @@
-import {BrowersRouter as Route,Routes,Router} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import AddBook from './pages/AddBook'
 import EditBook from './pages/EditBook'
