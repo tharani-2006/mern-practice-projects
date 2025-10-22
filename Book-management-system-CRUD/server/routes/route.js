@@ -17,7 +17,7 @@ router.post('/add',async (req,res) => {
 })
 
 //view
-router.get('/view',async (req,res) => {
+router.get('/',async (req,res) => {
     const books = await Book.find();
     res.json(books)
 })
@@ -36,12 +36,6 @@ router.put('/update/:id',async (req,res) => {
 
 //delete
 router.delete('/delete/:id',async(req,res) => {
-    const {name,author,price} = req.body;
-    const existingBook = await Book.findOne({ name })
-    if(!existingBook) {
-        return res.json({message : 'Book not found'})
-    }
-
     await Book.findByIdAndDelete(req.params.id)
     res.json({ message : 'Book deleted successfully'})
 })
