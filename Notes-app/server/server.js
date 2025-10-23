@@ -10,6 +10,6 @@ app.use(express.json())
 
 connectDB()
 
-app.use('/api/note',require('./routes/routes.js'))
+app.use('/api/notes',require('./routes/routes.js'))
 
 app.listen(5000 , () => console.log('Server port running at 5000'))

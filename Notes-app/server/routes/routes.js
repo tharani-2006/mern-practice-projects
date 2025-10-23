@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const search = req.query.search || "";
 
     const notes = await Note.find({
-        title: { $regrex: search, $options: 'i' }, // i -> insensitive
+        title: { $regex: search, $options: 'i' }, // i -> insensitive
     }).sort({ createdAt: -1 })
 
     res.json(notes);
@@ -20,6 +20,7 @@ router.post('/add', async (req, res) => {
     const { title, content } = req.body
     const note = new Note({ title, content })
     await note.save()
+    res.json({ message: "Note added successfully" });
 
 })
 
