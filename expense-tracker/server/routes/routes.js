@@ -15,7 +15,7 @@ router.post('/', async (req,res) => {
 
 router.get('/', async (req,res) => {
     try{
-        const trans = await find()
+        const trans = await Transaction.find()
         res.json(trans)
     }catch (e) {
         res.status(500).json({ message : e.message })
