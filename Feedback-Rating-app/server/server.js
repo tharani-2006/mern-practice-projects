@@ -9,6 +9,6 @@ app.use(express.json())
 
 connectDB()
 
-app.use('/api/feedbacks',require('./routes/route.js'))
+app.use('/api/feedback',require('./routes/route.js'))
 
 app.listen(5000 , () => console.log('Server port running in 5000'))
