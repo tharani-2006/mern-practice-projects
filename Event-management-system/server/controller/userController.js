@@ -1,6 +1,6 @@
 const Users = require('../models/User');
 
-// ➕ Create user
+// Create user
 const addUser = async (req, res) => {
   try {
     const user = new Users(req.body);
@@ -11,7 +11,7 @@ const addUser = async (req, res) => {
   }
 };
 
-// 📋 Get all users (for admin)
+// Get all users (for admin)
 const viewUsers = async (req, res) => {
   try {
     const users = await Users.find();
