@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import MyRegistrations from "./pages/MyRegistrations";
+import AdminDashboard from "./pages/AdminDashboard";
+import AddEvent from "./pages/AddEvent";
+import EditEvent from "./pages/EditEvent";
+import ViewRegistrations from "./pages/ViewRegistrations";
+import "./App.css";
 
 function App() {
+
+  const isAdmin = false; 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar isAdmin={isAdmin} />
+      <Routes>
+        {isAdmin ? (
+          <>
+            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/admin/add-event" element={<AddEvent />} />
+            <Route path="/admin/edit-event/:id" element={<EditEvent />} />
+            <Route path="/admin/view-registrations/:eventId" element={<ViewRegistrations />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/my-registrations" element={<MyRegistrations />} />
+          </>
+        )}
+      </Routes>
+    </Router>
   );
 }
 
